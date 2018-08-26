@@ -13,7 +13,6 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 Bundle "tpope/vim-commentary"
 
-
 Bundle "scrooloose/nerdtree"
 Bundle 'jistr/vim-nerdtree-tabs'
 " extended % matching for HTML, LaTeX, and many other languages
@@ -24,8 +23,13 @@ Bundle "tpope/vim-surround"
 " for repeat -> enhance surround.vim, . to repeat command
 Bundle "tpope/vim-repeat"
 Bundle "jiangmiao/auto-pairs"
-Bundle "kien/ctrlp.vim"
 Bundle "kana/vim-textobj-user"
+Bundle 'tacahiroy/ctrlp-funky'
+
+" CtrlP.vim支持，项目全局文件模糊查找 <leader>p 触发查找面板
+Bundle "kien/ctrlp.vim"
+" Ctrlsf.vim支持，全局跨文件内容搜索 <leader>sf 打开搜索面板
+Bundle 'dyng/ctrlsf.vim'
 
 " 用于查找匹配的文本对象 增加的一个i/文本对象用于操作查找匹配
 Bundle "kana/vim-textobj-lastpat"
@@ -45,6 +49,7 @@ Bundle "pangloss/vim-javascript"
 Bundle "w0rp/ale"
 " typescript
 Bundle "leafgarland/typescript-vim"
+Bundle 'peitalin/vim-jsx-typescript'
 
 " 更好的js语法高亮
 Bundle "othree/yajs.vim"
@@ -66,7 +71,6 @@ Bundle "mxw/vim-jsx"
 " 补全
 " 按键 C-X C-O提示，C-N和C-P向下向上搜索
 Bundle "marijnh/tern_for_vim"
-
 
 " 全局搜索 在vim中输入:Ack test_blah便可以在当前项目代码中搜索"test_blah"了
 Bundle "mileszs/ack.vim"

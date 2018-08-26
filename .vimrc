@@ -39,9 +39,9 @@ set ignorecase smartcase                     " 搜索时忽略大小写，但在
 
 " >和<字符缩进正常工作 设置tab键的字符数
 " 缩进，制表符，折叠设置
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 " expandtab选项，用来控制是否将Tab转换为空格 
 set expandtab
 
@@ -104,14 +104,52 @@ let g:ctrlp_custom_ignore = {
             \ }
 let g:ctrlp_show_hidden = 1
 
+" ctrlp-funky
+" 快捷键fu 进入当前文件的函数列表搜索
+" 快捷键fU 搜索当前光标下单词对应的函数
+nnoremap fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
+
+" ctrlsf 
+" ctrlsf 插件还提供了两种模式：normal/compact。
+" normal 模式是左半屏为搜索结果，右半屏为预览窗口。而 compact 模式则是类似于 ctrlp 的 quickfix 窗口模式。
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_auto_focus = {
+            \ "at": "start"
+            \ }
+" defines whether CtrlSF works in synchronous or asynchronous way
+let g:ctrlsf_search_mode = 'async'
+nnoremap <C-s> :CtrlSF<Space>
+" inoremap <C-s> <Esc>:CtrlSFToggle<CR>
+
+
 " ctags
-nnoremap <F5> :!ctags -R --exclude=node_modules<cr>
+nnoremap <F5> :!ctags -R --exclude=node_modules --exclude=dist --exclude=.git<cr>
 set tags=./tags;,tags
 set autochdir
 
-let g:tagbar_type_javascript = {
-            \ 'ctagsbin' : 'jsctags'
-            \ }
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',                                                        
+  \ 'ctagsargs' : '-f-',                                                           
+  \ 'kinds': [                                                                     
+    \ 'e:enums:0:1',                                                               
+    \ 'f:function:0:1',                                                            
+    \ 't:typealias:0:1',                                                           
+    \ 'M:Module:0:1',                                                              
+    \ 'I:import:0:1',                                                              
+    \ 'i:interface:0:1',                                                           
+    \ 'C:class:0:1',                                                               
+    \ 'm:method:0:1',                                                              
+    \ 'p:property:0:1',                                                            
+    \ 'v:variable:0:1',                                                            
+    \ 'c:const:0:1',                                                              
+  \ ],                                                                            
+  \ 'sort' : 0                                                                    
+\ }        
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -232,3 +270,5 @@ au BufRead,BufNewFile *.wpy setlocal filetype=javascript
 
 " flow
 au BufRead,BufNewFile *.flow setlocal filetype=javascript
+execute pathogen#infect()
+call pathogen#helptags()
